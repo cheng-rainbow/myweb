@@ -1,0 +1,16 @@
+{
+  "login": {
+    "welcome": "Welcome",
+    "subtext": "Please enter your account and password",
+    "email": "Email",
+    "password": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot password?",
+    "submit": "Login",
+    "noAccount": "Don't have an account?",
+    "register": "Register Now"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  }
+}
