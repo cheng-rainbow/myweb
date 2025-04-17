@@ -1,5 +1,5 @@
 <template>
-  <header class="h-32 px-5vw py-6">
+  <header class="h-32 px-8vw py-6">
     <NavBar />
   </header>
   <main>

@@ -8,23 +8,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        'dark-bg-100': '#2E3039', // 暗模式背景色 100
-        'dark-bg-200': '#1F2028', // 暗模式背景色 200
-        'dark-tt': '#FFFFFF', // 暗模式标题色
-        'dark-tx': '#A9ADC1', // 暗模式文本色
-        'dark-tx-hg': '#FFD543', // 暗模式高亮色
+        'black-0': '#000000',
+        'black-100': '#2E3039',
+        'black-200': '#1F2028',
+        'black-300': '#A9ADC1',
+        'black-400': '#4B4C53',
+        'dark-hg': '#FFD543',
 
-        'light-bg-100': '#FFFFFF', // 亮模式背景色 100
-        'light-bg-200': '#F7F7F7', // 亮模式背景色 200
-        'light-tt': '#000000', // 亮模式标题色
-        'light-tx': '#4B4C53', // 亮模式文本色
-        'light-tx-hg': '#846901', // 亮模式高亮色
-      },
-      borderColor: {
-        dark: '#4B4C53', // 暗模式边框色
-        'dark-hg': '#FFD543', // 暗模式高亮边框色
-        light: '#E7E9ED', // 亮模式边框色
-        'light-hg': '#846901', // 亮模式高亮边框色
+        'white-0': '#FFFFFF',
+        'white-100': '#F7F7F7',
+        'white-200': '#E7E9ED',
+        'light-hg': '#846901',
       },
       transitionDelay: {
         normal: '300ms',
@@ -33,8 +27,13 @@ export default {
         normal: '350ms',
         quick: '200ms',
       },
+      width: {
+        '5vw': '5vw',
+        '8vw': '8vw',
+      },
       padding: {
-        '5vw': '6vw',
+        '5vw': '5vw',
+        '8vw': '8vw',
       },
     },
   },

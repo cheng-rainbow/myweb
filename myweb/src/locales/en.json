@@ -12,5 +12,13 @@
   },
   "theme": {
     "toggle": "Toggle theme"
+  },
+  "nav": {
+    "title": "Xiao Lii",
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "me": "me",
+    "courses": "Courses"
   }
 }

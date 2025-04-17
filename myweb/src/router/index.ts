@@ -10,9 +10,24 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/courses',
+      name: 'Courses',
+      component: () => import('@/views/CoursesView.vue'),
+    },
+    {
+      path: '/blog',
+      name: 'Blog',
+      component: () => import('@/views/BlogView.vue'),
+    },
+    {
       path: '/about',
       name: 'About',
       component: () => import('@/views/AboutView.vue'),
+    },
+    {
+      path: '/me',
+      name: 'Me',
+      component: () => import('@/views/MeView.vue'),
     },
     {
       path: '/login',
@@ -21,7 +36,7 @@ const router = createRouter({
     },
     {
       path: '/:catchAll(.*)', // 捕获所有未匹配的路径
-      component: () => import('@/views/LoginView.vue'),
+      component: HomeView,
     },
   ],
 })

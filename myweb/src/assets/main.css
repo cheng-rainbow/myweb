@@ -10,7 +10,7 @@
     background-color 0.3s ease,
     color 0.3s ease;
   will-change: background-color;
-  @apply bg-light-bg-100  dark:bg-dark-bg-200;
-  @apply text-light-tx dark:text-dark-tx;
+  @apply bg-white-0  dark:bg-black-200;
+  @apply text-black-400 dark:text-black-300;
   @apply transition-all duration-normal;
 }
