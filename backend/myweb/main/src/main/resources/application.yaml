@@ -1,0 +1,18 @@
+
+spring:
+  application:
+    name: main
+
+  datasource:
+    url: jdbc:mysql://192.168.253.128:3306/myweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: di135790
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.253.128:8848
+
+server:
+  port: 8001
