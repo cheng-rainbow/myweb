@@ -5,24 +5,40 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'Home',
       component: HomeView,
     },
+
     {
       path: '/courses',
       name: 'Courses',
       component: () => import('@/views/CoursesView.vue'),
     },
     {
-      path: '/blog',
-      name: 'Blog',
-      component: () => import('@/views/BlogView.vue'),
+      path: '/courses/courseInfo/:courseId',
+      name: 'CourseInfo',
+      component: () => import('@/views/CourseInfoView.vue'),
+    },
+    {
+      path: '/blogs',
+      name: 'Blogs',
+      component: () => import('@/views/BlogsView.vue'),
+    },
+    {
+      path: '/blogs/blogInfo',
+      name: 'BlogInfo',
+      component: () => import('@/views/BlogInfoview.vue'),
     },
     {
       path: '/about',
       name: 'About',
       component: () => import('@/views/AboutView.vue'),
+    },
+    {
+      path: '/community',
+      name: 'Community',
+      component: () => import('@/views/Community.vue'),
     },
     {
       path: '/me',
@@ -36,9 +52,15 @@ const router = createRouter({
     },
     {
       path: '/:catchAll(.*)', // 捕获所有未匹配的路径
-      component: HomeView,
+      redirect: {
+        name: 'Home',
+      },
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    // 始终滚动到顶部
+    return { top: 0 }
+  },
 })
 
 export default router

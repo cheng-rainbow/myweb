@@ -4,13 +4,99 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'MyFont';
+  src: url('/public/fonts/myfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #app {
   min-height: 100vh;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-  will-change: background-color;
-  @apply bg-white-0  dark:bg-black-200;
-  @apply text-black-400 dark:text-black-300;
-  @apply transition-all duration-normal;
+  transition: all 0.3s;
+
+  position: relative;
+  @apply bg-white-21 dark:bg-black-21;
+  @apply text-light-text dark:text-dark-text;
+  /* @apply noise; */
+}
+
+h1 {
+  @apply text-2xl;
+}
+
+h2 {
+  @apply text-xl;
+}
+
+@layer utilities {
+  .noise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.4;
+    background:
+      url('/public/img/bg-white.png') left top / 540px,
+      url('/public/img/bg-black.png') right bottom / 540px;
+  }
+
+  .noise-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.3;
+    background:
+      url('/public/img/bg-white.png') left top / 600px,
+      url('/public/img/bg-black.png') right bottom / 500px;
+  }
+
+  .wave::before {
+    /* background: url(/public/svg/wave.svg); */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url(/public/svg/wave.svg);
+    background-size: 10px;
+    opacity: 0.4;
+  }
+  .dark .wave::before {
+    background-image: url(/public/svg/wave-dark.svg);
+    background-size: 10px;
+    opacity: 0.4;
+  }
+
+  /* 透明圆形 */
+  .layer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .layer::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: -100%;
+    top: 0;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.2;
+    transition: all 0.3s;
+  }
+
+  .layer:hover::before {
+    scale: 3.3;
+  }
 }
