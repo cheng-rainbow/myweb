@@ -16,7 +16,7 @@
   transition: all 0.3s;
 
   position: relative;
-  @apply bg-white-21 dark:bg-black-21;
+  @apply bg-white dark:bg-black-21;
   @apply text-light-text dark:text-dark-text;
   /* @apply noise; */
 }
@@ -69,12 +69,12 @@ h2 {
     pointer-events: none;
     background-image: url(/public/svg/wave.svg);
     background-size: 10px;
-    opacity: 0.4;
+    opacity: 0.5;
   }
   .dark .wave::before {
     background-image: url(/public/svg/wave-dark.svg);
     background-size: 10px;
-    opacity: 0.4;
+    opacity: 0.5;
   }
 
   /* 透明圆形 */
@@ -98,5 +98,15 @@ h2 {
 
   .layer:hover::before {
     scale: 3.3;
+  }
+
+  .vary::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background: url(/public/svg/vary.svg);
+    transition: all 0.3s;
   }
 }

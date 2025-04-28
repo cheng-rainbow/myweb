@@ -1,4 +1,4 @@
-<template>my</template>
+<template>myinfo</template>
 
 <script lang="ts" setup></script>
 

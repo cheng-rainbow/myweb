@@ -1,8 +1,10 @@
 <template>
   <div class="three-d skill-grid select-none">
-    <div v-for="card in cards" class="card pt-10 p-4 transition-all duration-normal bg-white dark:bg-black-2A rounded-3xl" :key="card.id">
+    <div v-for="card in cards" class="card rounded-3xl bg-white p-4 pt-10 transition-all duration-normal dark:bg-black-2A" :key="card.id">
       <img class="mx-auto h-20 w-full object-contain" :src="card.url" alt="" />
-      <div class="text-xl my-4">{{ card.name }}</div>
+      <div class="my-4 text-xl">
+        {{ card.name }}
+      </div>
     </div>
   </div>
 </template>

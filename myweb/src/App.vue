@@ -1,8 +1,8 @@
 <template>
-  <header class="h-20 px-8vw noise-nav w-full fixed top-0 z-50 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-normal">
+  <header class="noise-nav fixed top-0 z-40 h-20 w-full bg-light-bg px-8vw text-light-text transition-colors duration-normal dark:bg-dark-bg dark:text-dark-text">
     <NavBar />
   </header>
-  <main class="pt-20 relative">
+  <main class="relative pt-20">
     <RouterView />
   </main>
 </template>
