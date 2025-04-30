@@ -1,6 +1,6 @@
 <template>
   <div class="relative px-15vw py-10">
-    <div class="mb-5 space-y-3 rounded-md bg-[#F9F9F9] p-2 transition-all duration-normal dark:bg-[#2B2B2B]">
+    <div class="mb-5 space-y-4 rounded-md bg-[#F9F9F9] p-2 transition-all duration-normal dark:bg-[#2B2B2B]">
       <h3 class="flex flex-wrap items-center justify-start text-[#333333] transition-colors duration-normal dark:text-white">
         <span class="font-bold">标签：</span>
         <li @click="changeSelectedTagId(tag.id)" class="mr-2 cursor-pointer list-none rounded-md px-2 py-1 transition-colors duration-normal" :class="{ 'bg-[#0089DD] text-white dark:bg-[#404040] dark:text-yellow': selectedTagId == tag.id }" v-for="tag in tags" :key="tag.id">
@@ -28,24 +28,26 @@
 
     <section>
       <div id="courseView-card" class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        <CoursesCard v-for="c in courses" :key="c.id" :course="c"></CoursesCard>
+        <CoursesCard @click="clickedCoursesCard(c)" v-for="c in courses" :key="c.id" :course="c"></CoursesCard>
       </div>
     </section>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from 'vue'
-import CoursesCard from '@/components/CoursesCard.vue'
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import CoursesCard from '@/components/courses/CoursesCard.vue'
 import { storeToRefs } from 'pinia'
-import { useWebInfo, type Course } from '@/stores/webInfo'
+import { useWebInfo } from '@/stores/webInfo'
 import router from '@/router'
+import type { Course } from '@/interface/courses'
 
 const SelectedTagId = ref<number>(1)
 const webInfo = useWebInfo()
 const { isDark } = storeToRefs(webInfo)
-const courses = webInfo.courses
+
 const colors = ['#c2993a', '#36a3ff', '#ff4545']
+const courses = useWebInfo().courses
 
 const tags = [
   {
@@ -93,11 +95,13 @@ const selectedTypeId = ref(1)
 
 const changeSelectedTagId = (id: number) => {
   selectedTagId.value = id
-  console.log(selectedTagId.value)
 }
 const changeSelectedTypeId = (id: number) => {
   selectedTypeId.value = id
-  console.log(selectedTypeId.value)
+}
+
+const clickedCoursesCard = (course: Course) => {
+  router.push({ name: 'CourseInfo', params: { courseId: course.id } })
 }
 
 onMounted(() => {
@@ -110,7 +114,8 @@ onMounted(() => {
   }
   const handleMouseLeave = (e: Event) => {
     const card = e.currentTarget as HTMLElement
-    card.style.boxShadow = 'none'
+    // card.style.boxShadow = 'none'
+    card.style.removeProperty('box-shadow')
   }
   cards.childNodes.forEach((card) => {
     card.addEventListener('mouseenter', handleMouseEnter)

@@ -1,176 +1,144 @@
 <template>
   <div class="px-12vw pt-10">
-    <p class="pb-6">
-      <span class="dark:text-white">地址：</span>
-      <span class="h-8 w-12 px-4 py-2" v-for="ip in ips">{{ ip }}</span>
-    </p>
-    <p class="pb-6">
-      <span class="dark:text-white">类别：</span>
-      <span class="h-8 w-12 px-4 py-2" v-for="tag in blogs[0].tags">
-        {{ tag }}
-      </span>
-    </p>
-    <section class="">
-      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <div v-for="blog in blogs" :key="blog.title" class="group relative cursor-pointer overflow-hidden rounded-xl bg-white shadow-xl transition-all duration-500 hover:shadow-2xl">
-          <img :src="blog.image" :alt="blog.title" class="group-hover:scale-120 h-64 w-full object-cover transition-transform duration-700 ease-out" />
-          <div class="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent"></div>
-          <div class="absolute left-6 top-6 text-white-28">
-            <h3 class="animate-fade-in text-2xl font-bold tracking-wide drop-shadow-lg">
-              {{ blog.title }}
-            </h3>
-          </div>
-          <div class="absolute bottom-0 left-0 w-full p-6 text-sm text-white opacity-80">
-            <p>
-              <span class="font-medium text-white">地点：</span>
-              {{ blog.address }}
-            </p>
-            <p>
-              <span class="font-medium text-white">发布：</span>
-              {{ blog.date }}
-            </p>
-            <p>
-              <span class="font-medium text-white">阅读：</span>
-              {{ blog.readTime }}
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="mb-6 rounded-md bg-[#F8F8F8] p-4 shadow-sm transition-colors duration-normal dark:bg-[#2B2B2B] dark:text-white">
+      <p class="mb-4 flex min-h-8 flex-wrap items-center">
+        <span class="font-bold dark:text-white">类别：</span>
+        <span @click="changeSelectedSortId(sort)" class="mr-3 h-8 w-12 cursor-pointer rounded-md px-2 py-1 transition-colors duration-normal" :class="{ 'bg-[#0089DD] text-[#EEEEEE] dark:bg-[#404040] dark:text-yellow': selectedSortId == sort.id }" v-for="sort in sorts" :key="sort.id">
+          {{ sort.name }}
+        </span>
+      </p>
+      <p v-if="selectedSortId == 1" class="flex min-h-8 flex-wrap items-center">
+        <span class="font-bold dark:text-white">课程：</span>
+        <span @click="changeSelectedCourseId(c)" class="mr-3 h-8 min-w-12 cursor-pointer rounded-md px-2 py-1 transition-colors duration-normal" :class="{ 'bg-[#0089DD] text-[#EEEEEE] dark:bg-[#404040] dark:text-yellow': selectedCourseId == c.id }" v-for="c in courses" :key="c.id">
+          {{ c.name }}
+        </span>
+      </p>
+      <p v-if="selectedSortId == 2" class="flex min-h-8 flex-wrap items-center">
+        <span class="font-bold dark:text-white">标签：</span>
+        <span @click="changeSelectedDailyTagId(t)" class="mr-3 h-8 min-w-12 cursor-pointer rounded-md px-2 py-1 transition-colors duration-normal" :class="{ 'bg-[#0089DD] text-[#EEEEEE] dark:bg-[#404040] dark:text-yellow': selectedDailyTagId == t.id }" v-for="t in dailyTags" :key="t.id">
+          {{ t.name }}
+        </span>
+      </p>
+      <p v-if="selectedSortId == 3" class="flex min-h-8 flex-wrap items-center">
+        <span class="font-bold dark:text-white">地址：</span>
+        <span @click="changeSelectedIpId(ip)" class="mr-3 h-8 w-12 cursor-pointer rounded-md px-2 py-1 transition-colors duration-normal" :class="{ 'bg-[#0089DD] text-[#EEEEEE] dark:bg-[#404040] dark:text-yellow': selectedIpId == ip.id }" v-for="ip in ips" :key="ip.id">
+          {{ ip.name }}
+        </span>
+      </p>
+    </div>
+    <section>
+      <RouterView />
     </section>
   </div>
 </template>
 
 <script lang="ts" setup>
-const blogs = [
+import type { Courses, DailyTags, Ips, Sorts } from '@/interface/blog'
+import router from '@/router'
+import { ref } from 'vue'
+
+const selectedSortId = ref(1)
+
+const selectedCourseId = ref(0)
+const selectedDailyTagId = ref(1)
+const selectedIpId = ref(1)
+const sorts: Sorts[] = [
   {
-    title: '乌布的热带冒险',
-    tags: ['日常', '美食', '旅行'],
-    address: '北京',
-    date: '2025年3月15日',
-    readTime: '5分钟',
-    image: 'https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=2070&auto=format&fit=crop',
+    id: 1,
+    name: '讲义',
+    routeName: 'NotesBlog',
   },
   {
-    title: '埃菲尔铁塔的浪漫之旅',
-    tags: ['日常', '美食', '旅行'],
-    address: '法国巴黎埃菲尔铁塔',
-    date: '2025年2月10日',
-    readTime: '7分钟',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop',
+    id: 2,
+    name: '日常',
+    routeName: 'DailyBlog',
   },
   {
-    title: '时代广场的都市脉动',
-    tags: ['日常', '美食', '旅行'],
-    address: '美国纽约时代广场',
-    date: '2025年1月25日',
-    readTime: '6分钟',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    title: '乌布的热带冒险',
-    tags: ['日常', '美食', '旅行'],
-    address: '北京',
-    date: '2025年3月15日',
-    readTime: '5分钟',
-    image: 'https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    title: '埃菲尔铁塔的浪漫之旅',
-    tags: ['日常', '美食', '旅行'],
-    address: '法国巴黎埃菲尔铁塔',
-    date: '2025年2月10日',
-    readTime: '7分钟',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop',
-  },
-  {
-    title: '时代广场的都市脉动',
-    tags: ['日常', '美食', '旅行'],
-    address: '美国纽约时代广场',
-    date: '2025年1月25日',
-    readTime: '6分钟',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    title: '乌布的热带冒险',
-    tags: ['日常', '美食', '旅行'],
-    address: '北京',
-    date: '2025年3月15日',
-    readTime: '5分钟',
-    image: 'https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    title: '埃菲尔铁塔的浪漫之旅',
-    tags: ['日常', '美食', '旅行'],
-    address: '法国巴黎埃菲尔铁塔',
-    date: '2025年2月10日',
-    readTime: '7分钟',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop',
-  },
-  {
-    title: '时代广场的都市脉动',
-    tags: ['日常', '美食', '旅行'],
-    address: '美国纽约时代广场',
-    date: '2025年1月25日',
-    readTime: '6分钟',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    title: '乌布的热带冒险',
-    tags: ['日常', '美食', '旅行'],
-    address: '北京',
-    date: '2025年3月15日',
-    readTime: '5分钟',
-    image: 'https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    title: '埃菲尔铁塔的浪漫之旅',
-    tags: ['日常', '美食', '旅行'],
-    address: '法国巴黎埃菲尔铁塔',
-    date: '2025年2月10日',
-    readTime: '7分钟',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop',
-  },
-  {
-    title: '时代广场的都市脉动',
-    tags: ['日常', '美食', '旅行'],
-    address: '美国纽约时代广场',
-    date: '2025年1月25日',
-    readTime: '6分钟',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop',
+    id: 3,
+    name: '旅行',
+    routeName: 'TravelBlog',
   },
 ]
 
-const ips = ['上海', '北京', '重庆', '西安']
+const courses: Courses[] = [
+  {
+    id: 0,
+    name: '全部',
+  },
+  {
+    id: 1,
+    name: 'Java进阶课',
+  },
+  {
+    id: 2,
+    name: 'JavaScript基础入门课',
+  },
+  {
+    id: 3,
+    name: 'C++进阶课',
+  },
+  {
+    id: 4,
+    name: 'Java进阶课程',
+  },
+  {
+    id: 5,
+    name: 'Java进阶课程',
+  },
+]
+
+const dailyTags: DailyTags[] = [
+  {
+    id: 1,
+    name: '美食',
+  },
+  {
+    id: 2,
+    name: '工作',
+  },
+  {
+    id: 3,
+    name: '学习',
+  },
+]
+
+const ips: Ips[] = [
+  {
+    id: 1,
+    name: '北京',
+  },
+  {
+    id: 2,
+    name: '上海',
+  },
+  {
+    id: 3,
+    name: '广州',
+  },
+  {
+    id: 4,
+    name: '深圳',
+  },
+  {
+    id: 5,
+    name: '成都',
+  },
+]
+
+const changeSelectedSortId = (sort: Sorts) => {
+  selectedSortId.value = sort.id
+  router.push({ name: sort.routeName })
+}
+
+const changeSelectedIpId = (ip: Ips) => {
+  selectedIpId.value = ip.id
+}
+const changeSelectedCourseId = (course: Courses) => {
+  selectedCourseId.value = course.id
+}
+const changeSelectedDailyTagId = (tag: DailyTags) => {
+  selectedDailyTagId.value = tag.id
+}
 </script>
 
-<style scoped>
-.animate-fade-in {
-  animation: fadeIn 1s ease-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.group:hover .group-hover\:scale-120 {
-  transform: scale(1.15);
-}
-</style>
+<style scoped></style>

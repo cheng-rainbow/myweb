@@ -1,27 +1,25 @@
 <template>
-  <div class="gap-8 px-10vw">
-    <aside class="scrollbar fixed left-[10vw] top-20 hidden h-[calc(100vh-80px)] w-48 cursor-pointer overflow-y-auto border-r border-gray-99 py-8 transition-colors duration-normal dark:border-gray-44 md:block [&>*:hover]:dark:bg-black-2C [&>*]:rounded-sm [&>*]:p-2">
-      <div class="flex items-center">
+  <div class="relative gap-8 px-10vw">
+    <aside class="scrollbar fixed left-[10vw] top-20 z-20 hidden h-[calc(100vh-80px)] w-[50%] cursor-pointer overflow-y-auto border-r border-gray-99 bg-white py-8 transition-colors duration-normal dark:border-gray-44 dark:bg-[#212121] md:block md:w-48 [&>*:hover]:bg-[#F1F2F3] [&>*:hover]:text-black [&>*:hover]:dark:bg-black-2C [&>*:hover]:dark:text-white [&>*]:rounded-sm [&>*]:p-2">
+      <div @click="changeCurNavItemId(1)" class="flex items-center transition-colors duration-normal" :class="curNavItemId == 1 ? 'bg-[#F1F2F3] text-black dark:bg-black-2C dark:text-white' : ''">
         <svg class="mr-2 inline-block" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24">
           <path fill="currentColor" d="M4 19v-9q0-.475.213-.9t.587-.7l6-4.5q.525-.4 1.2-.4t1.2.4l6 4.5q.375.275.588.7T20 10v9q0 .825-.588 1.413T18 21h-3q-.425 0-.712-.288T14 20v-5q0-.425-.288-.712T13 14h-2q-.425 0-.712.288T10 15v5q0 .425-.288.713T9 21H6q-.825 0-1.412-.587T4 19" />
         </svg>
         首页
       </div>
-      <div class="flex items-center">
+      <div @click="changeCurNavItemId(2)" class="flex items-center transition-colors duration-normal" :class="curNavItemId == 2 ? 'bg-[#F1F2F3] text-black dark:bg-black-2C dark:text-white' : ''">
         <svg class="mr-2 inline-block" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24">
           <path fill="currentColor" d="M6.455 19L2 22.5V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1zM11 14v2h2v-2zM8.567 8.813l1.962.393A1.5 1.5 0 1 1 12 11h-1v2h1a3.5 3.5 0 1 0-3.433-4.187" />
         </svg>
         问题
       </div>
-
-      <div class="flex items-center">
+      <div @click="changeCurNavItemId(3)" class="flex items-center transition-colors duration-normal" :class="curNavItemId == 3 ? 'bg-[#F1F2F3] text-black dark:bg-black-2C dark:text-white' : ''">
         <svg class="mr-2 inline-block" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 1024 1024">
           <path fill="currentColor" d="M924.3 338.4a447.6 447.6 0 0 0-96.1-143.3a443.1 443.1 0 0 0-143-96.3A443.9 443.9 0 0 0 512 64h-2c-60.5.3-119 12.3-174.1 35.9a444.1 444.1 0 0 0-141.7 96.5a445 445 0 0 0-95 142.8A449.9 449.9 0 0 0 65 514.1c.3 69.4 16.9 138.3 47.9 199.9v152c0 25.4 20.6 46 45.9 46h151.8a447.7 447.7 0 0 0 199.5 48h2.1c59.8 0 117.7-11.6 172.3-34.3A443.2 443.2 0 0 0 827 830.5c41.2-40.9 73.6-88.7 96.3-142c23.5-55.2 35.5-113.9 35.8-174.5c.2-60.9-11.6-120-34.8-175.6M312.4 560c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48s47.9 21.5 47.9 48s-21.4 48-47.9 48m199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48s47.9 21.5 47.9 48s-21.5 48-47.9 48m199.6 0c-26.4 0-47.9-21.5-47.9-48s21.5-48 47.9-48s47.9 21.5 47.9 48s-21.5 48-47.9 48" stroke-width="25.5" stroke="currentColor" />
         </svg>
         闲聊
       </div>
-
-      <div class="flex items-center">
+      <div @click="changeCurNavItemId(4)" class="flex items-center transition-colors duration-normal" :class="curNavItemId == 4 ? 'bg-[#F1F2F3] text-black dark:bg-black-2C dark:text-white' : ''">
         <svg class="mr-2 inline-block" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 36 36">
           <path fill="currentColor" d="M8 19v-8H5a3 3 0 0 0-3 3v18a1 1 0 0 0 .56.89a1 1 0 0 0 1-.1L8.71 29h13.44A2.77 2.77 0 0 0 25 26.13V25H14a6 6 0 0 1-6-6" class="clr-i-solid clr-i-solid-path-1" stroke-width="1" stroke="currentColor" />
           <path fill="currentColor" d="M31 4H14a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h13.55l4.78 3.71a1 1 0 0 0 1 .11a1 1 0 0 0 .57-.9V7A3 3 0 0 0 31 4" class="clr-i-solid clr-i-solid-path-2" stroke-width="1" stroke="currentColor" />
@@ -29,7 +27,7 @@
         </svg>
         面经
       </div>
-      <div class="flex items-center">
+      <div @click="changeCurNavItemId(5)" class="flex items-center transition-colors duration-normal" :class="curNavItemId == 5 ? 'bg-[#F1F2F3] text-black dark:bg-black-2C dark:text-white' : ''">
         <svg class="mr-2 inline-block" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24">
           <path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2m-6 0h-4V4h4z" stroke-width="0.5" stroke="currentColor" />
         </svg>
@@ -45,7 +43,8 @@
         </svg>
         我的课程
       </p>
-      <div :class="{ hidden: !isOpenMyNavItems }" class="flex cursor-pointer items-center rounded-sm p-2 hover:dark:bg-black-2C" v-for="(item, idx) in myNavItems" :key="item.id">
+
+      <div @click="changeCurNavItemId(item.id)" :class="{ hidden: !isOpenMyNavItems, 'bg-[#F1F2F3] text-black dark:bg-black-2C dark:text-white': curNavItemId == item.id }" class="flex cursor-pointer items-center rounded-sm p-2 transition-colors duration-normal hover:dark:bg-black-2C" v-for="(item, idx) in myNavItems" :key="item.id">
         <span
           :style="{
             backgroundColor: colors[idx % colors.length],
@@ -56,11 +55,32 @@
       </div>
     </aside>
 
+    <button @click="toggleMenu" class="top-23 fixed left-[12px] z-50 block md:hidden">
+      <svg v-if="ifShowThreeLine" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-dasharray="16" stroke-dashoffset="16" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+          <path d="M5 5h14">
+            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.1s" values="16;0" />
+          </path>
+          <path d="M5 12h14">
+            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.1s" dur="0.1s" values="16;0" />
+          </path>
+          <path d="M5 19h14">
+            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.1s" values="16;0" />
+          </path>
+        </g>
+      </svg>
+      <svg v-else xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19">
+          <animate fill="freeze" attributeName="d" dur="0.1s" values="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19;M5 5L12 12L19 5M12 12H12M5 19L12 12L19 19" />
+        </path>
+      </svg>
+    </button>
+    <!-- Comment -->
     <div class="relative left-0 flex w-full gap-5 py-8 md:left-48 md:w-[calc(100%-192px)] md:px-6">
       <div class="h-full w-full xl:w-3/4">
-        <div class="mb-3 h-full w-full rounded-md bg-white-19 text-[#333333] transition-colors duration-normal dark:bg-[#2B2B2B] dark:text-white">
+        <div class="mb-3 h-full w-full rounded-md bg-[#F8F8F8] text-[#333333] transition-colors duration-normal dark:bg-[#2B2B2B] dark:text-white">
           <div class="mb-6 p-4">
-            <h3 class="mb-3 flex w-full flex-wrap items-center">
+            <h3 class="mb-4 flex w-full flex-wrap items-center">
               <span class="h-8 font-bold leading-8">标签：</span>
               <button @click="changeSelectedTagId(tag.id)" class="mr-3 h-8 rounded-md px-2 py-1 transition-colors duration-normal" :class="{ 'bg-[#0089DD] text-[#EEEEEE] dark:bg-[#404040] dark:text-yellow': selectedTagId == tag.id }" v-for="tag in tags" :key="tag.id">{{ tag.name }}</button>
             </h3>
@@ -89,54 +109,57 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
 import Comment from '@/components/community/Comment.vue'
 import PostCard from '@/components/community/PostCard.vue'
 import type { Problem } from '@/interface/community'
+import { useRoute } from 'vue-router'
+import router from '@/router'
 
 const isOpenMyNavItems = ref(true)
 const selectedSortId = ref(1)
 const selectedTagId = ref(1)
-
+const curNavItemId = ref(1)
+const route = useRoute()
 const myNavItems = [
   {
-    id: 1,
+    id: 6,
     name: 'Python 基础入门',
   },
   {
-    id: 2,
+    id: 7,
     name: '深入理解 JavaScript',
   },
   {
-    id: 3,
+    id: 8,
     name: 'Vue.js 实战开发',
   },
   {
-    id: 4,
+    id: 9,
     name: 'React 前端框架',
   },
   {
-    id: 5,
+    id: 10,
     name: 'Node.js 后端开发',
   },
   {
-    id: 6,
+    id: 11,
     name: 'TypeScript 进阶',
   },
   {
-    id: 7,
+    id: 12,
     name: '算法与数据结构',
   },
   {
-    id: 8,
+    id: 13,
     name: 'Web 性能优化',
   },
   {
-    id: 9,
+    id: 14,
     name: '前端工程化实践',
   },
   {
-    id: 10,
+    id: 15,
     name: 'GraphQL API 开发',
   },
 ]
@@ -177,8 +200,8 @@ const tags = [
 const problems: Problem[] = reactive([
   {
     id: 1,
-    title: '什么是闭包 (Closure)？在 JavaScript 中如何使用？',
-    content: '请解释 JavaScript 中闭包的概念，并提供至少一个实际的使用场景代码示例。',
+    title: '什么是闭包 (Closure)？在 JavaScript 中如何使用？很好你复范德萨富士达范德萨发顺丰打赏士大夫撒旦飞洒地方大撒旦范德萨的发生范德萨范德萨飞洒范德萨撒旦赛妇女节点卡收费南京埃斯顿你家附近',
+    content: '请解释 JavaScript 中闭包的概念，并提供至少一个实际的使用场景代码示例。德萨发顺丰打赏士大夫撒旦飞洒地方大撒旦范德萨的发生范德萨范德萨飞洒范德萨撒旦赛德萨发顺丰打赏士大夫撒旦飞洒地方大撒旦范德萨的发生范德萨范德萨飞洒范德萨撒旦赛',
   },
   {
     id: 2,
@@ -227,6 +250,8 @@ const problems: Problem[] = reactive([
   },
 ])
 
+const ifShowThreeLine = ref<boolean>(true)
+
 const toggleIsOpenMyNavItems = () => {
   isOpenMyNavItems.value = !isOpenMyNavItems.value // 简化为直接取反
 }
@@ -240,6 +265,39 @@ const changeSelectedTagId = (id: number) => {
 }
 
 const colors = ['#FF6B6B', '#FF9F43', '#FFD60A', '#2ECC71', '#1ABC9C', '#4FC1E9', '#3F51B5', '#AC80FF', '#FF81C0', '#6B7280']
+
+const toggleMenu = () => {
+  ifShowThreeLine.value = !ifShowThreeLine.value
+  const c = document.getElementsByClassName('scrollbar')[0] as HTMLElement
+  if (!ifShowThreeLine.value) c.style.display = 'block'
+  else c.style.display = 'none'
+}
+
+const handleResize = () => {
+  const c = document.getElementsByClassName('scrollbar')[0] as HTMLElement
+  if (window.innerWidth >= 768) {
+    c.style.removeProperty('display') // 移除内联 display 样式(none)
+    ifShowThreeLine.value = true // 重置菜单图标为“三条线”
+  }
+}
+
+const changeCurNavItemId = (id: number) => {
+  router.push({ name: 'Community', params: { navId: id } })
+  curNavItemId.value = id
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+  handleResize()
+
+  if (route.params.navId != null && route.params.navId != undefined) {
+    curNavItemId.value = Number(route.params.navId)
+  }
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 
 <style scoped>

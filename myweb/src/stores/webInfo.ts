@@ -1,19 +1,11 @@
-import { ref, computed } from 'vue'
+import { reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
-
-export interface Course {
-  id: number
-  title: string
-  description: string
-  image: string
-  author: string
-  price: string
-}
+import type { Course } from '@/interface/courses'
 
 export const useWebInfo = defineStore('webinfo', () => {
   const isDark = ref<boolean>(false)
 
-  const courses: Course[] = [
+  const courses: Course[] = reactive([
     {
       id: 1,
       title: 'JavaScript 进阶',
@@ -70,7 +62,7 @@ export const useWebInfo = defineStore('webinfo', () => {
       author: '小李',
       price: '￥199',
     },
-  ]
+  ])
 
   return { isDark, courses }
 })

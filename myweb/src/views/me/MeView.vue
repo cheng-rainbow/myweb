@@ -1,7 +1,7 @@
 <template>
   <div class="grid w-full grid-cols-1 px-10vw py-8 lg:block">
     <aside class="top-28 inline-block space-y-4 lg:fixed lg:w-[calc((100%-20vw)/5)]">
-      <div class="rounded-lg bg-[#F9F9F9] p-4 text-[#333333] shadow-sm dark:bg-[#2B2B2B] dark:text-white">
+      <div class="rounded-lg bg-[#f6f6f6] p-4 text-[#333333] shadow-sm dark:bg-[#2B2B2B] dark:text-white">
         <div class="flex flex-col items-center space-y-3 text-center">
           <img :src="user.avatar" class="aspect-[1/1] w-full border-2 border-blue-100" alt="用户头像" />
           <h2 class="text-xl font-semibold">
@@ -13,7 +13,7 @@
           </p>
         </div>
       </div>
-      <nav class="rounded-lg bg-[#F9F9F9] p-4 text-[#333333] shadow-sm dark:bg-[#2B2B2B] dark:text-white">
+      <nav class="rounded-lg bg-[#f6f6f6] p-4 text-[#333333] shadow-sm dark:bg-[#2B2B2B] dark:text-white">
         <ul class="space-y-2">
           <RouterLink to="/profile" class="flex items-center space-x-3 rounded-lg p-3 transition-colors duration-normal hover:bg-[#0089DD] hover:text-[#EEEEEE] dark:hover:bg-[#404040] dark:hover:text-yellow">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">

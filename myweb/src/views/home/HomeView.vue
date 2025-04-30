@@ -53,7 +53,7 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
 import SkillsCard from '@/components/SkillsCard.vue'
-import CoursesCard from '@/components/CoursesCard.vue'
+import CoursesCard from '@/components/courses/CoursesCard.vue'
 import { onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useWebInfo, type Course } from '@/stores/webInfo'

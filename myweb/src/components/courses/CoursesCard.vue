@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden rounded-md bg-[#F9F9F9] transition-all duration-normal hover:scale-[1.02] dark:bg-[#2B2B2B]">
+  <div class="overflow-hidden rounded-md bg-[#F8F8F8] shadow-sm transition-all duration-normal hover:scale-[1.02] dark:bg-[#2B2B2B]">
     <div @click="handleCourseClicked" class="cursor-pointer">
       <img :src="course.image" class="" />
     </div>
@@ -21,8 +21,9 @@
 </template>
 
 <script lang="ts" setup>
+import type { Course } from '@/interface/courses'
 import router from '@/router'
-import type { Course } from '@/stores/webInfo'
+
 import { defineProps } from 'vue'
 
 const { course } = defineProps<{

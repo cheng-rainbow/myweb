@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 z-50 flex h-[100vh] w-[100vw] items-center justify-center bg-white-2A px-5vw dark:bg-neutral-950">
+  <div class="flex h-[100vh] w-[100vw] items-center justify-center bg-white-2A px-5vw dark:bg-[#212121]">
     <RouterLink :to="{ name: 'Home' }" class="group fixed left-6 top-5 inline-block py-2 text-black transition-colors duration-normal dark:text-white">
       <h1>码上学</h1>
       <span class="absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 transform bg-black transition-transform duration-normal group-hover:scale-x-100 group-hover:opacity-100 dark:bg-white"></span>

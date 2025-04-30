@@ -1,8 +1,10 @@
 <template>
-  <div class="flex flex-col rounded-md bg-white-19 p-4 pb-3 text-[#222] shadow-sm transition-colors duration-normal dark:bg-black-2A dark:text-[#bbb]">
+  <div class="flex flex-col rounded-md bg-[#F8F8F8] p-4 pb-3 text-[#222] shadow-sm transition-colors duration-normal dark:bg-black-2A dark:text-[#bbb]">
     <div class="flex grow gap-4">
       <div class="grow">
-        <h2 class="line-clamp-2 cursor-pointer pb-2 text-[#1B76CF] transition-colors duration-normal dark:text-yellow">{{ problem.title }}</h2>
+        <h2 class="pb-2 text-[#1B76CF] transition-colors duration-normal dark:text-yellow">
+          <span class="line-clamp-2 cursor-pointer">{{ problem.title }}</span>
+        </h2>
         <p class="line-clamp-2 text-[14px] text-[#333333] transition-colors duration-normal dark:text-[#eee]">{{ problem.content }}</p>
       </div>
     </div>
@@ -46,7 +48,6 @@
 
 <script lang="ts" setup>
 import type { Problem } from '@/interface/community'
-import { onMounted } from 'vue'
 
 const tags = [
   {

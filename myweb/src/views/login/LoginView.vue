@@ -1,5 +1,5 @@
 <template>
-  <div class="wave fixed top-0 z-50 flex h-[100vh] w-[100vw] items-center justify-center bg-white-2A px-5vw dark:bg-neutral-950">
+  <div class="wave flex h-[100vh] w-[100vw] items-center justify-center bg-white-2A px-5vw dark:bg-[#212121]">
     <RouterLink :to="{ name: 'Home' }" class="group fixed left-6 top-5 inline-block py-2 text-black transition-colors duration-normal dark:text-white">
       <h1>码上学</h1>
       <span class="absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 transform bg-black transition-transform duration-normal group-hover:scale-x-100 group-hover:opacity-100 dark:bg-white"></span>
@@ -32,7 +32,6 @@
     </button>
     <div class="relative flex w-full max-w-3xl overflow-hidden rounded-xl bg-white-19 shadow-xl dark:bg-neutral-900">
       <div class="hidden w-1/2 bg-cover bg-center sm:block" style="background-image: url('https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=2070&auto=format&fit=crop')"></div>
-
       <div class="w-full p-6 sm:w-1/2">
         <h2 class="dark:text-yellow-300 mb-4 text-center text-2xl font-bold text-yellow">欢迎登录</h2>
 
@@ -60,13 +59,13 @@
         <div class="flex justify-around">
           <button @click="handleThirdPartyLogin('wechat')" class="flex items-center justify-center rounded-full bg-green p-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-              <path fill="#fff" d="M15.85 8.14c.39 0 .77.03 1.14.08C16.31 5.25 13.19 3 9.44 3c-4.25 0-7.7 2.88-7.7 6.43c0 2.05 1.15 3.86 2.94 5.04L3.67 16.5l2.76-1.19c.59.21 1.21.38 1.87.47c-.09-.39-.14-.79-.14-1.21c-.01-3.54 3.44-6.43 7.69-6.43M12 5.89a.96.96 0 1 1 0 1.92a.96.96 0 0 1 0-1.92M6.87 7.82a.96.96 0 1 1 0-1.92a.96.96 0 0 1 0 1.92" stroke-width="0.5" stroke="#fff" />
-              <path fill="#fff" d="M22.26 14.57c0-2.84-2.87-5.14-6.41-5.14s-6.41 2.3-6.41 5.14s2.87 5.14 6.41 5.14c.58 0 1.14-.08 1.67-.2L20.98 21l-1.2-2.4c1.5-.94 2.48-2.38 2.48-4.03m-8.34-.32a.96.96 0 1 1 .96-.96c.01.53-.43.96-.96.96m3.85 0a.96.96 0 1 1 0-1.92a.96.96 0 0 1 0 1.92" stroke-width="0.5" stroke="#fff" />
+              <path class="fill-[#fff]" d="M15.85 8.14c.39 0 .77.03 1.14.08C16.31 5.25 13.19 3 9.44 3c-4.25 0-7.7 2.88-7.7 6.43c0 2.05 1.15 3.86 2.94 5.04L3.67 16.5l2.76-1.19c.59.21 1.21.38 1.87.47c-.09-.39-.14-.79-.14-1.21c-.01-3.54 3.44-6.43 7.69-6.43M12 5.89a.96.96 0 1 1 0 1.92a.96.96 0 0 1 0-1.92M6.87 7.82a.96.96 0 1 1 0-1.92a.96.96 0 0 1 0 1.92" stroke-width="0.5" stroke="#fff" />
+              <path class="fill-[#fff]" d="M22.26 14.57c0-2.84-2.87-5.14-6.41-5.14s-6.41 2.3-6.41 5.14s2.87 5.14 6.41 5.14c.58 0 1.14-.08 1.67-.2L20.98 21l-1.2-2.4c1.5-.94 2.48-2.38 2.48-4.03m-8.34-.32a.96.96 0 1 1 .96-.96c.01.53-.43.96-.96.96m3.85 0a.96.96 0 1 1 0-1.92a.96.96 0 0 1 0 1.92" stroke-width="0.5" />
             </svg>
           </button>
           <button @click="handleThirdPartyLogin('qq')" class="flex items-center justify-center rounded-full bg-blue0 p-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 20 20">
-              <path fill="#fff" d="M18.496 13.607c-.134-1.931-1.372-3.55-2.088-4.387c.1-.243.341-1.653-.593-2.615q.003-.035.002-.068C15.817 2.743 13.237.012 10 0C6.763.013 4.183 2.743 4.183 6.537q0 .035.002.068c-.934.962-.692 2.372-.593 2.615c-.715.837-1.953 2.456-2.088 4.387c-.024.508.051 1.248.288 1.577c.289.4 1.081-.081 1.648-1.362c.158.594.521 1.5 1.345 2.649c-1.378.33-1.771 1.752-1.307 2.53c.327.548 1.075.999 2.365.999c2.296 0 3.31-.645 3.763-1.095q.138-.147.394-.146q.256-.001.394.146c.453.45 1.467 1.095 3.762 1.095c1.29 0 2.039-.45 2.366-.999c.464-.778.07-2.2-1.307-2.53c.824-1.15 1.188-2.055 1.345-2.649c.567 1.281 1.36 1.763 1.648 1.362c.237-.33.312-1.07.288-1.577" stroke-width="0.5" stroke="#fff" />
+              <path class="fill-[#fff]" d="M18.496 13.607c-.134-1.931-1.372-3.55-2.088-4.387c.1-.243.341-1.653-.593-2.615q.003-.035.002-.068C15.817 2.743 13.237.012 10 0C6.763.013 4.183 2.743 4.183 6.537q0 .035.002.068c-.934.962-.692 2.372-.593 2.615c-.715.837-1.953 2.456-2.088 4.387c-.024.508.051 1.248.288 1.577c.289.4 1.081-.081 1.648-1.362c.158.594.521 1.5 1.345 2.649c-1.378.33-1.771 1.752-1.307 2.53c.327.548 1.075.999 2.365.999c2.296 0 3.31-.645 3.763-1.095q.138-.147.394-.146q.256-.001.394.146c.453.45 1.467 1.095 3.762 1.095c1.29 0 2.039-.45 2.366-.999c.464-.778.07-2.2-1.307-2.53c.824-1.15 1.188-2.055 1.345-2.649c.567 1.281 1.36 1.763 1.648 1.362c.237-.33.312-1.07.288-1.577" stroke-width="0.5" />
             </svg>
           </button>
         </div>

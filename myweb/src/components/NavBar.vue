@@ -43,13 +43,8 @@
         </svg>
       </button>
       <!-- 小屏菜单栏 -->
-      <button @click="toggleMenu" class="mx-2 block h-14 w-14 lg:hidden">
-        <svg v-if="!showOpenMenu" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24">
-          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19">
-            <animate fill="freeze" attributeName="d" dur="0.1s" values="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19;M5 5L12 12L19 5M12 12H12M5 19L12 12L19 19" />
-          </path>
-        </svg>
-        <svg v-else xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24">
+      <button @click="toggleMenu" class="mx-2 h-14 w-14 lg:hidden">
+        <svg v-if="ifShowThreeLine" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24">
           <g fill="none" stroke="currentColor" stroke-dasharray="16" stroke-dashoffset="16" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
             <path d="M5 5h14">
               <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.1s" values="16;0" />
@@ -62,17 +57,22 @@
             </path>
           </g>
         </svg>
+        <svg v-else xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19">
+            <animate fill="freeze" attributeName="d" dur="0.1s" values="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19;M5 5L12 12L19 5M12 12H12M5 19L12 12L19 19" />
+          </path>
+        </svg>
       </button>
       <button @click="() => router.push({ name: 'Login' })" class="h-10 w-10 rounded-full">登陆</button>
     </div>
   </nav>
 
-  <ul v-if="!showOpenMenu" class="absolute left-0 z-50 flex w-full flex-col bg-white-28 transition-all duration-normal dark:bg-black-28">
+  <ul v-if="!ifShowThreeLine" class="absolute left-0 z-50 flex w-full flex-col bg-white-28 transition-all duration-normal dark:bg-black-28">
     <li v-for="item in navItems" @click="handleMenuClicked(item)" :key="item.id" :class="item.id == actNavItemId ? 'text-black dark:text-white' : ''" class="relative cursor-pointer border-b-[1px] border-dashed border-gray-300 px-8vw py-3 dark:border-gray-44 dark:hover:text-red">
-      <RouterLink :to="{ name: item.routeName }">
+      <a>
         {{ item.name }}
         <img class="absolute w-8" :class="item.id == actNavItemId ? 'block' : 'hidden'" src="/public/svg/yello-line.svg" alt="" />
-      </RouterLink>
+      </a>
     </li>
     <li @click="toggleTheme" class="w-full cursor-pointer border-b-[1px] border-dashed border-gray-300 px-8vw py-3 dark:border-gray-44">
       <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24">
@@ -118,9 +118,9 @@ interface NavItem {
 
 const { isDark } = storeToRefs(useWebInfo())
 const route = useRoute()
-const showOpenMenu = ref<boolean>(true)
+const ifShowThreeLine = ref<boolean>(true)
 const mediaWidth = window.matchMedia('(min-width: 1024px)')
-const actNavItemId = ref<number>(1)
+const actNavItemId = ref<number>(-1)
 
 const navItems: NavItem[] = [
   {
@@ -169,6 +169,7 @@ const toggleTheme = () => {
   isDark.value = !isDark.value
   document.documentElement.classList.toggle('dark')
   localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+  ifShowThreeLine.value = true
 }
 
 onMounted(() => {
@@ -183,18 +184,25 @@ onMounted(() => {
 
   mediaWidth.addEventListener('change', (e) => {
     if (e.matches) {
-      showOpenMenu.value = true
+      ifShowThreeLine.value = true
     }
   })
+
+  for (let i = 0; i < navItems.length; i++) {
+    if (route.path.includes(navItems[i].routeName.toLowerCase())) {
+      actNavItemId.value = navItems[i].id
+      break
+    }
+  }
 })
 
 const handleMenuClicked = (item: NavItem) => {
-  showOpenMenu.value = true
+  ifShowThreeLine.value = true
   router.push({ name: item.routeName })
 }
 
 const toggleMenu = () => {
-  showOpenMenu.value = !showOpenMenu.value
+  ifShowThreeLine.value = !ifShowThreeLine.value
 }
 </script>
 <style scoped>
